@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_grahn"
+    app:startDestination="@id/menuFragment">
+
+
+    <fragment
+        android:id="@+id/perfilFragment"
+        android:name="com.example.eltinchopracticas.views.ui.Fragments.perfilFragment"
+        android:label="fragment_perfil"
+        tools:layout="@layout/fragment_perfil" >
+        <action
+            android:id="@+id/action_perfilFragment_to_comidaFragment"
+            app:destination="@id/comidaFragment" />
+        <action
+            android:id="@+id/action_perfilFragment_to_menuFragment"
+            app:destination="@id/menuFragment" />
+
+
+        <action
+            android:id="@+id/action_perfilFragment_to_loginActivity"
+            app:destination="@id/loginActivity" />
+    </fragment>
+    <fragment
+        android:id="@+id/comidaFragment"
+        android:name="com.example.eltinchopracticas.views.ui.Fragments.comidaFragment"
+        android:label="fragment_comida"
+        tools:layout="@layout/fragment_comida" >
+        <action
+            android:id="@+id/action_comidaFragment_to_perfilFragment"
+            app:destination="@id/perfilFragment" />
+
+       <action
+            android:id="@+id/action_comidaFragment_to_menuFragment"
+            app:destination="@id/menuFragment" />
+        <action
+            android:id="@+id/action_comidaFragment_to_loginActivity"
+            app:destination="@id/loginActivity" />
+    </fragment>
+    <fragment
+        android:id="@+id/menuFragment"
+        android:name="com.example.eltinchopracticas.views.ui.Fragments.menuFragment"
+        android:label="fragment_menu"
+        tools:layout="@layout/fragment_menu" >
+        <action
+            android:id="@+id/action_menuFragment_to_comidaFragment"
+            app:destination="@id/comidaFragment" />
+        <action
+            android:id="@+id/action_menuFragment_to_perfilFragment"
+            app:destination="@id/perfilFragment" />
+
+    </fragment>
+    <activity
+        android:id="@+id/loginActivity"
+        android:name="com.example.eltinchopracticas.views.ui.activities.LoginActivity"
+        android:label="activity_login"
+        tools:layout="@layout/activity_login" />
+</navigation>

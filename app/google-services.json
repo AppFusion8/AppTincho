@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "585437911547",
+    "firebase_url": "https://practicas-eltincho-default-rtdb.firebaseio.com",
+    "project_id": "practicas-eltincho",
+    "storage_bucket": "practicas-eltincho.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:585437911547:android:439ed3f93be7b189e5535e",
+        "android_client_info": {
+          "package_name": "com.example.eltinchopracticas"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "585437911547-9rm1um22250hfht7thah5e7m5gqc96li.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.eltinchopracticas",
+            "certificate_hash": "c21e34cce1b4c7a6f07384c910eae75eb949a6f0"
+          }
+        },
+        {
+          "client_id": "585437911547-7teqk8kn7j3g4ckoelgd6c1ce8355a1u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAdayaMdeRI1IPRHmitJs2XelvwiuJIprQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "585437911547-7teqk8kn7j3g4ckoelgd6c1ce8355a1u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

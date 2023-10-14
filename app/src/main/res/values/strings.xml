@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">ElTincho</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="Api_Map"
+        templateMergeStrategy="preserve"
+        translatable="false">
+        AIzaSyCknAjh_BWLApK7cptfzVl9Iza0nbuN2Is
+    </string>
+</resources>
