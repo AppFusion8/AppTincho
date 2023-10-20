@@ -61,7 +61,7 @@ class LoginActivity : AppCompatActivity() {
         iniciobutton = findViewById(R.id.BotonInicio)
         recuperarbutton = findViewById(R.id.BotonRecuperar)
         registrobutton = findViewById(R.id.BotonRegistroLogin)
-        pruebabutton = findViewById(R.id.masterKey)
+        //pruebabutton = findViewById(R.id.masterKey)
 
         //auth con correo y constraseña
         iniciobutton.setOnClickListener {
