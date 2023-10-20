@@ -36,7 +36,7 @@ class LoginActivity : AppCompatActivity() {
     lateinit var registrobutton:TextView
     lateinit var iniciobutton:Button
     lateinit var recuperarbutton: TextView
-    lateinit var pruebabutton:Button
+    //lateinit var pruebabutton:Button
     lateinit var googleButton: Button
     @SuppressLint("ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -73,9 +73,9 @@ class LoginActivity : AppCompatActivity() {
         registrobutton.setOnClickListener {
             startActivity(Intent(this, RegistroActivity::class.java))
         }
-        pruebabutton.setOnClickListener {
+     /*   pruebabutton.setOnClickListener {
             startActivity(Intent(this, HomeActivity::class.java))
-        }
+        }*/
         googleButton.setOnClickListener{
             signInGoogle()
         }
