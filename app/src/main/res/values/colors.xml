@@ -10,4 +10,5 @@
     <color name="secondaryTextColor">#000000</color>
     <color name="naranja">#FF8C00</color>
     <color name="gris_fondo">#F0F9F9FC</color>
+    <color name="gold">#FAD103</color>
 </resources>
