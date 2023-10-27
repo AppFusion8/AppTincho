@@ -14,29 +14,28 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="@drawable/ic_launcher_background">
+        android:background="@mipmap/image_parrilla"
+        >
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginLeft="20dp"
-            android:background="@drawable/theme_gradients_background">
+            >
+
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="110dp"
+                android:layout_height="wrap_content"
                 android:foregroundGravity="center"
-                app:srcCompat="@mipmap/ic_banner_foreground_tincho"
-                >
-
-            </ImageView>
+                android:minHeight="125dp"
+                android:layout_marginTop="10dp"
+                app:srcCompat="@mipmap/ic_banner_foreground_tincho"></ImageView>
 
             <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="600dp"
                 android:layout_marginTop="110dp"
-                android:background="@drawable/ic_launcher_background"
+
+
                 >
                 <GridLayout
                     android:layout_width="match_parent"
@@ -45,34 +44,54 @@
                     android:rowCount="3"
                     android:alignmentMode="alignMargins"
                     android:columnOrderPreserved="false"
+                    android:layout_marginTop="5dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="32dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="20dp"
                     >
                     <androidx.cardview.widget.CardView
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
                         android:layout_columnWeight="1"
                         android:layout_rowWeight="1"
-                        app:cardElevation="5dp"
+                        app:cardElevation="15dp"
                         app:cardCornerRadius="5dp"
-                        android:layout_margin="10dp">
+                        android:layout_margin="10dp"
+
+                        >
+
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:orientation="vertical"
+                            android:background="@color/whiteTransparent"
+                            android:backgroundTint="#000000"
+                            android:backgroundTintMode="src_atop"
+                            android:elevation="15dp"
                             android:gravity="center"
+                            android:orientation="vertical"
                             android:padding="15dp">
+
+
                             <ImageView
+                                android:id="@+id/cardPlatillos"
                                 android:layout_width="100dp"
                                 android:layout_height="100dp"
-                                android:src="@mipmap/platillos_menu"
-                                android:id="@+id/cardPlatillos">
+                                android:src="@mipmap/platillos">
 
                             </ImageView>
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textSize="18dp"
+                                android:fitsSystemWindows="false"
+                                android:freezesText="false"
+                                android:text="Platillos"
                                 android:textAlignment="center"
-                                android:text="Platillos">
+                                android:fontFamily="@font/caladea"
+                                android:textColor="@color/gold"
+                                android:textFontWeight="600"
+                                android:textSize="24sp">
 
                             </TextView>
 
@@ -92,20 +111,26 @@
                             android:layout_height="match_parent"
                             android:orientation="vertical"
                             android:gravity="center"
-                            android:padding="15dp">
+                            android:padding="15dp"
+                            android:background="@color/whiteTransparent"
+                            android:backgroundTint="#000000"
+                            android:backgroundTintMode="src_atop">
                             <ImageView
                                 android:layout_width="100dp"
                                 android:layout_height="100dp"
-                                android:src="@mipmap/pedidos_menu"
+                                android:src="@mipmap/pedidos"
                                 android:id="@+id/cardPedido">
 
                             </ImageView>
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textSize="18dp"
                                 android:textAlignment="center"
-                                android:text="Pedidos">
+                                android:text="Pedidos"
+                                android:fontFamily="@font/caladea"
+                                android:textColor="@color/secondaryTextColor"
+                                android:textFontWeight="600"
+                                android:textSize="24sp">
 
                             </TextView>
 
@@ -125,20 +150,26 @@
                             android:layout_height="match_parent"
                             android:orientation="vertical"
                             android:gravity="center"
-                            android:padding="15dp">
+                            android:padding="15dp"
+                            android:background="@color/whiteTransparent"
+                            android:backgroundTint="#000000"
+                            android:backgroundTintMode="src_atop">
                             <ImageView
                                 android:layout_width="100dp"
                                 android:layout_height="100dp"
-                                android:src="@mipmap/perfil_menu"
+                                android:src="@mipmap/user"
                                 android:id="@+id/cardMiCuenta">
 
                             </ImageView>
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textSize="18dp"
                                 android:textAlignment="center"
-                                android:text="Mi cuenta">
+                                android:text="Mi cuenta"
+                                android:fontFamily="@font/caladea"
+                                android:textColor="@color/primaryTextColor"
+                                android:textFontWeight="600"
+                                android:textSize="24sp">
 
                             </TextView>
 
@@ -158,20 +189,26 @@
                             android:layout_height="match_parent"
                             android:orientation="vertical"
                             android:gravity="center"
-                            android:padding="15dp">
+                            android:padding="15dp"
+                            android:background="@color/whiteTransparent"
+                            android:backgroundTint="#000000"
+                            android:backgroundTintMode="src_atop">
                             <ImageView
                                 android:layout_width="100dp"
                                 android:layout_height="100dp"
-                                android:src="@mipmap/favorito_menu"
+                                android:src="@mipmap/favs"
                                 android:id="@+id/cardFavoritos">
 
                             </ImageView>
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textSize="18dp"
                                 android:textAlignment="center"
-                                android:text="Favoritos">
+                                android:text="Favoritos"
+                                android:fontFamily="@font/caladea"
+                                android:textColor="@color/secondaryTextColor"
+                                android:textFontWeight="600"
+                                android:textSize="24sp">
 
                             </TextView>
 
@@ -191,20 +228,27 @@
                             android:layout_height="match_parent"
                             android:orientation="vertical"
                             android:gravity="center"
-                            android:padding="15dp">
+                            android:padding="15dp"
+                            android:background="@color/whiteTransparent"
+                            android:backgroundTint="#000000"
+                            android:backgroundTintMode="src_atop">
                             <ImageView
                                 android:layout_width="100dp"
                                 android:layout_height="100dp"
-                                android:src="@mipmap/ruta_menu"
+                                android:src="@mipmap/menu"
                                 android:id="@+id/cardContactanos">
 
                             </ImageView>
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textSize="18dp"
                                 android:textAlignment="center"
-                                android:text="Contactános">
+                                android:text="Contactános"
+                                android:textFontWeight="800"
+                                android:fontFamily="@font/caladea"
+                                android:textColor="@color/secondaryTextColor"
+                                android:textFontWeight="600"
+                                android:textSize="24sp">
 
                             </TextView>
 
@@ -224,20 +268,26 @@
                             android:layout_height="match_parent"
                             android:orientation="vertical"
                             android:gravity="center"
-                            android:padding="15dp">
+                            android:padding="15dp"
+                            android:background="@color/whiteTransparent"
+                            android:backgroundTint="#000000"
+                            android:backgroundTintMode="src_atop">
                             <ImageView
                                 android:layout_width="100dp"
                                 android:layout_height="100dp"
-                                android:src="@mipmap/ayuda_menu"
+                                android:src="@mipmap/help"
                                 android:id="@+id/cardAyuda">
 
                             </ImageView>
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textSize="18dp"
                                 android:textAlignment="center"
-                                android:text="Ayuda">
+                                android:text="Ayuda"
+                                android:fontFamily="@font/caladea"
+                                android:textColor="@color/secondaryTextColor"
+                                android:textFontWeight="600"
+                                android:textSize="24sp">
 
                             </TextView>
 

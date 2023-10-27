@@ -22,6 +22,10 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/Api_Map">
         </meta-data>
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+
         <activity
             android:name=".views.ui.activities.RecuperarActivity"
             android:exported="false">
