@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".views.ui.Fragments.menuFragment"
+    tools:context="com.example.eltinchopracticas.views.ui.Fragments.menuFragment"
     android:background="@color/primaryTextColor">
 
     <!-- TODO: Update blank fragment layout -->
@@ -247,7 +247,6 @@
                                 android:textFontWeight="800"
                                 android:fontFamily="@font/caladea"
                                 android:textColor="@color/secondaryTextColor"
-                                android:textFontWeight="600"
                                 android:textSize="24sp">
 
                             </TextView>
