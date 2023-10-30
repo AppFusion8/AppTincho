@@ -1,8 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
-
+    <item
+        android:id="@+id/ayuda"
+        android:title="Ayuda"
+        android:icon="@drawable/icon_help"
+        android:color="@color/secondaryDarkColor"
+        />
+    <item
+        android:id="@+id/pedidos"
+        android:title="Pedidos"
+        android:icon="@drawable/icon_shop"
+        android:color="@color/secondaryDarkColor"
+        />
     <item
         android:id="@+id/cerrar"
         android:title="Cerrar Sesion"

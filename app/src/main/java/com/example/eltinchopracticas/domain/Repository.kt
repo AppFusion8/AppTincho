@@ -30,13 +30,38 @@ class Repository {
         //retorna la coleccion de entradas
         return mutableLiveData
     }
-    /*
     fun getDataComprasData():LiveData<MutableList<compras>>{
-
-        //retorna la coleccion de compras
+        val mutableData=MutableLiveData<MutableList<compras>>()
+        FirebaseFirestore.getInstance().collection("compras")
+            .get().addOnSuccessListener {
+                    result->
+                val listData= mutableListOf<compras>()
+                for(document in result){
+                    val titulo=document.getString("titulo")
+                    val precio=document.getString("precio")
+                    val imagen = document.getString("imagen")
+                    val compra=compras(titulo!!,precio!!,imagen)
+                    listData.add(compra)
+                }
+                mutableData.value=listData
+            }
+        return mutableData
     }
     fun getDataFavoritosData():LiveData<MutableList<favoritos>>{
-         //retorna la coleccion de favoritos
-        
-    }*/
+        val mutableData=MutableLiveData<MutableList<favoritos>>()
+        FirebaseFirestore.getInstance().collection("favoritos")
+            .get().addOnSuccessListener {
+                    result->
+                val listData= mutableListOf<favoritos>()
+                for(document in result){
+                    val titulo=document.getString("titulo")
+                    val precio=document.getString("precio")
+                    val imagen = document.getString("imagen")
+                    val favorito=favoritos(titulo!!,precio!!,imagen)
+                    listData.add(favorito)
+                }
+                mutableData.value=listData
+            }
+        return mutableData
+    }
 }
