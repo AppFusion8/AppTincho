@@ -57,7 +57,14 @@ class comidaFragment : Fragment(), OnEntradaItemClickLitener {
     override fun onOptionsItemSelected(item: MenuItem):Boolean{
 
         return when (item.itemId){
-
+            R.id.pedidos->{
+                findNavController().navigate(R.id.action_comidaFragment_to_pedidosFragment)
+                true
+            }
+            R.id.ayuda->{
+                findNavController().navigate(R.id.action_comidaFragment_to_ayudaFragment)
+                true
+            }
             R.id.cerrar->{
                 firebaseAuth.signOut()
                 //findNavController().navigate(R.id.action_rutaFragment_to_loginActivity)
@@ -79,18 +86,48 @@ class comidaFragment : Fragment(), OnEntradaItemClickLitener {
         button.setOnNavigationItemReselectedListener {
             when(it.itemId){
                 R.id.home->findNavController().navigate(R.id.action_comidaFragment_to_menuFragment)
+                R.id.contactanos->findNavController().navigate(R.id.action_comidaFragment_to_rutaFragment)
                 R.id.perfil->findNavController().navigate(R.id.action_comidaFragment_to_perfilFragment)
-                }
+                R.id.favoritos->findNavController().navigate(R.id.action_comidaFragment_to_favoritosFragment)
+            }
         }
         (activity as AppCompatActivity).setSupportActionBar(view?.findViewById(R.id.actionbartoolbar))
 
     }
     override fun onItemClick(entrada: entradas,position: Int){
+        val titulo:String=entrada.titulo
+        val precio:String=entrada.precio
+        val imagen:String?=entrada.imagen
+        val dato= hashMapOf(
+            "titulo" to titulo,
+            "precio" to precio,
+            "imagen" to imagen
+        )
 
+        //aqui deberia ubicar que usuario esta comprando y le añado items al carrito a ese usuario
+        database.collection("compras")
+            .document(titulo)
+            .set(dato)
+            .addOnSuccessListener {
+                Toast.makeText(context,"Entrada añadida al carrito",Toast.LENGTH_SHORT).show()
+            }
     }
 
     override fun onDeseosClick(entrada: entradas, position: Int) {
-
+        val titulo:String=entrada.titulo
+        val precio:String=entrada.precio
+        val imagen:String?=entrada.imagen
+        val dato= hashMapOf(
+            "titulo" to titulo,
+            "precio" to precio,
+            "imagen" to imagen
+        )
+        database.collection("favoritos")
+            .document(titulo)
+            .set(dato)
+            .addOnSuccessListener {
+                Toast.makeText(context,"Entrada añadida al favoritos",Toast.LENGTH_SHORT).show()
+            }
     }
 
 }

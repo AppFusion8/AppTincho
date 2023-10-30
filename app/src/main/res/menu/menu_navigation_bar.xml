@@ -22,6 +22,17 @@
         android:icon="@drawable/home_icon"
         android:color="@color/secondaryDarkColor"
         />
-
+    <item
+        android:id="@+id/favoritos"
+        android:title="Favoritos"
+        android:icon="@drawable/icon_fav"
+        android:color="@color/secondaryDarkColor"
+        />
+    <item
+        android:id="@+id/contactanos"
+        android:title="Contactenos"
+        android:icon="@drawable/icon_contacto"
+        android:color="@color/secondaryDarkColor"
+        />
 
 </menu>

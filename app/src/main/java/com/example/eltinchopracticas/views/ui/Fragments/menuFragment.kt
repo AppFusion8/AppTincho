@@ -26,10 +26,25 @@ class menuFragment : Fragment() {
         cardPlatillo.setOnClickListener{
             findNavController().navigate(R.id.action_menuFragment_to_comidaFragment)
         }
-        
+        val cardAyudas=view.findViewById<ImageView>(R.id.cardAyuda)
+        cardAyudas.setOnClickListener{
+            findNavController().navigate(R.id.action_menuFragment_to_ayudaFragment)
+        }
+        val cardCompra=view.findViewById<ImageView>(R.id.cardPedido)
+        cardCompra.setOnClickListener{
+            findNavController().navigate(R.id.action_menuFragment_to_pedidosFragment)
+        }
+        val cardFav=view.findViewById<ImageView>(R.id.cardFavoritos)
+        cardFav.setOnClickListener{
+            findNavController().navigate(R.id.action_menuFragment_to_favoritosFragment)
+        }
         val cardPerfil=view.findViewById<ImageView>(R.id.cardMiCuenta)
         cardPerfil.setOnClickListener(){
             findNavController().navigate(R.id.action_menuFragment_to_perfilFragment)
+        }
+        val cardRutas=view.findViewById<ImageView>(R.id.cardContactanos)
+        cardRutas.setOnClickListener(){
+            findNavController().navigate(R.id.action_menuFragment_to_rutaFragment)
         }
     }
 }

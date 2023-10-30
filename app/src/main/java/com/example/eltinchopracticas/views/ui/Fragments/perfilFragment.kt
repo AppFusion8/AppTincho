@@ -99,7 +99,14 @@ class perfilFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem):Boolean{
 
         return when (item.itemId){
-
+            R.id.ayuda->{
+                findNavController().navigate(R.id.action_perfilFragment_to_ayudaFragment)
+                true
+            }
+            R.id.pedidos->{
+                findNavController().navigate(R.id.action_perfilFragment_to_pedidosFragment)
+                true
+            }
             R.id.cerrar->{
                 firebaseAuth.signOut()
                 //findNavController().navigate(R.id.action_rutaFragment_to_loginActivity)
@@ -122,7 +129,8 @@ class perfilFragment : Fragment() {
             when(it.itemId){
                 R.id.home->findNavController().navigate(R.id.action_perfilFragment_to_menuFragment)
                 R.id.platillos->findNavController().navigate(R.id.action_perfilFragment_to_comidaFragment)
-
+                R.id.contactanos->findNavController().navigate(R.id.action_perfilFragment_to_rutaFragment)
+                R.id.favoritos->findNavController().navigate(R.id.action_perfilFragment_to_favoritosFragment)
             }
         }
         (activity as AppCompatActivity).setSupportActionBar(view?.findViewById(R.id.actionbartoolbar))
