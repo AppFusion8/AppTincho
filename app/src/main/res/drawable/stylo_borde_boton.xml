@@ -3,7 +3,7 @@
     android:shape="rectangle">
     <solid
         android:width="1sp"
-        android:color="@color/secondaryColor">
+        android:color="@color/gold">
     </solid>
     <padding
         android:bottom="10sp"
@@ -17,9 +17,5 @@
 
 
     </corners>
-    <stroke
-        android:width="2dp"
-        android:color="@color/fondo_tincho_background">
 
-    </stroke>
 </shape>
