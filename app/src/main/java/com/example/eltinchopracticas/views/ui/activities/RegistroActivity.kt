@@ -52,6 +52,7 @@ class RegistroActivity : AppCompatActivity() {
                         val userdb=dbReference.child(user?.uid.toString())
                         userdb.child("name").setValue(name)
                         userdb.child("celular").setValue(cel)
+                userdb.child("foto").setValue("https://static.vecteezy.com/system/resources/previews/019/879/186/non_2x/user-icon-on-transparent-background-free-png.png")
                         startActivity(Intent(this, HomeActivity::class.java))
                     } else {
                         Toast.makeText(applicationContext,Task.exception.toString(),Toast.LENGTH_LONG).show()

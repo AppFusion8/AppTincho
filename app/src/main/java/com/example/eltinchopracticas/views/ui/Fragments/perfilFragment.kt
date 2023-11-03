@@ -2,8 +2,10 @@ package com.example.eltinchopracticas.views.ui.Fragments
 
 import android.content.Intent
 import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.view.*
 import android.widget.EditText
 import android.widget.ImageButton
@@ -17,20 +19,23 @@ import com.example.eltinchopracticas.views.ui.activities.LoginActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.crashlytics.buildtools.reloc.org.apache.commons.io.output.ByteArrayOutputStream
 import com.google.firebase.database.*
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
 import com.squareup.picasso.Picasso
 
 
 @Suppress("DEPRECATION")
 class perfilFragment : Fragment() {
-    lateinit var firebaseAuth:FirebaseAuth
-    val database:DatabaseReference= FirebaseDatabase.getInstance().getReference("User")
+    private lateinit var firebaseAuth:FirebaseAuth
+    private val database:DatabaseReference= FirebaseDatabase.getInstance().getReference("User")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        Log.d("perfilfragment","onCreateView");
         val view= inflater.inflate(R.layout.fragment_perfil, container, false)
         val  nombreCompleto=view.findViewById<EditText>(R.id.nombrecompleto)
         val correoCompleto=view.findViewById<EditText>(R.id.correoelectronico)
@@ -45,7 +50,9 @@ class perfilFragment : Fragment() {
         database.child(user?.uid.toString()).addValueEventListener(object :ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 nombreCompleto.setText(snapshot.child("name").value.toString())
+                Log.d("perfilFragment", "nombreCompleto: $nombreCompleto")
                 celular.setText(snapshot.child("celular").value.toString())
+                Log.d("perfilFragment", "celular: $celular")
                 //val fotoUsuario=snapshot.child("foto").value.toString()
                 try{
                     val fotoUsuario=snapshot.child("foto").value.toString()
@@ -53,13 +60,14 @@ class perfilFragment : Fragment() {
                         Picasso.with(context).load(fotoUsuario).into(foto)
                     }
                 }catch (ex:Exception){
-                    Toast.makeText(activity,ex.message, Toast.LENGTH_SHORT).show()
+                    Log.d("perfilFragment", "nohayfoto")
+                    //Toast.makeText(activity,ex.message, Toast.LENGTH_SHORT).show()
                 }
 
             }
 
             override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
+                Log.e("perfilFragment", "Data retrieval canceled: ${error.message}")
             }
         })
         val btneditnombre=view.findViewById<ImageButton>(R.id.nombreedit)
@@ -70,7 +78,7 @@ class perfilFragment : Fragment() {
         correoCompleto.isEnabled=false
         celular.isEnabled=false
         btneditnombre.setOnClickListener{
-            if(nombreCompleto.isEnabled==false){
+            if(!nombreCompleto.isEnabled){
                 nombreCompleto.isEnabled=true
             }else if(nombreCompleto.isEnabled==true){
                 nombreCompleto.isEnabled=false
@@ -148,19 +156,84 @@ class perfilFragment : Fragment() {
         }
 
     }
-    override fun onActivityResult(requestCode: Int, resultCode:Int, data: Intent?){
+    // En tu onActivityResult
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        //val imageView=view?.findViewById<ImageView>(R.id.fotoperfil)
-        val imageView2=view?.findViewById<ImageView>(R.id.fotoperfilgeneral)
-        //camara
-        if(requestCode==123){
-            var bitmap=data?.extras?.get("data") as Bitmap
-            //imageView?.setImageBitmap(bitmap)
+        val imageView2 = view?.findViewById<ImageView>(R.id.fotoperfilgeneral)
+
+        if (requestCode == 123 && resultCode == AppCompatActivity.RESULT_OK && data != null) {
+            // La imagen proviene de la cámara
+            val bitmap = data.extras?.get("data") as Bitmap
             imageView2?.setImageBitmap(bitmap)
-        } else if (requestCode==456){
-            //imageView?.setImageURI(data?.data)
-            imageView2?.setImageURI(data?.data)
+
+            // Subir la imagen a Firebase Storage y actualizar la URL en la base de datos
+            uploadImageToFirebaseStorage(bitmap)
+        } else if (requestCode == 456 && resultCode == AppCompatActivity.RESULT_OK && data != null) {
+            // La imagen proviene de la galería
+            val imageUri = data.data
+            imageView2?.setImageURI(imageUri)
+
+            // Subir la imagen a Firebase Storage y actualizar la URL en la base de datos
+            if (imageUri != null) {
+                uploadImageToFirebaseStorageFromGallery(imageUri)
+            }
         }
     }
+
+    private fun uploadImageToFirebaseStorage(bitmap: Bitmap) {
+        // Subir la imagen a Firebase Storage y obtener la URL de descarga
+        val storageRef = FirebaseStorage.getInstance().reference
+        val user = firebaseAuth.currentUser
+        val profileImageRef = storageRef.child("profile_images/${user?.uid}.jpg")
+
+        val baos = ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+        val imageData = baos.toByteArray()
+
+        val uploadTask = profileImageRef.putBytes(imageData)
+
+        uploadTask.addOnSuccessListener { taskSnapshot ->
+            // Imagen subida con éxito
+            // Obtener la URL de descarga
+            profileImageRef.downloadUrl.addOnSuccessListener { uri ->
+                val imageUrl = uri.toString()
+                // Actualizar el campo "foto" en la base de datos con la nueva URL
+                updateUserProfileImageInDatabase(user?.uid, imageUrl)
+            }
+        }.addOnFailureListener { exception ->
+            // Manejar errores de carga de imagen
+            Log.e("perfilFragment", "Error al subir la imagen: ${exception.message}")
+        }
+    }
+
+    private fun uploadImageToFirebaseStorageFromGallery(imageUri: Uri) {
+        // Subir la imagen seleccionada de la galería a Firebase Storage
+        val storageRef = FirebaseStorage.getInstance().reference
+        val user = firebaseAuth.currentUser
+        val profileImageRef = storageRef.child("profile_images/${user?.uid}.jpg")
+
+        val uploadTask = profileImageRef.putFile(imageUri)
+
+        uploadTask.addOnSuccessListener { taskSnapshot ->
+            // Imagen subida con éxito
+            // Obtener la URL de descarga
+            profileImageRef.downloadUrl.addOnSuccessListener { uri ->
+                val imageUrl = uri.toString()
+                // Actualizar el campo "foto" en la base de datos con la nueva URL
+                updateUserProfileImageInDatabase(user?.uid, imageUrl)
+            }
+        }.addOnFailureListener { exception ->
+            // Manejar errores de carga de imagen
+            Log.e("perfilFragment", "Error al subir la imagen desde la galería: ${exception.message}")
+        }
+    }
+
+    private fun updateUserProfileImageInDatabase(userId: String?, imageUrl: String) {
+        if (userId != null) {
+            val userRef = database.child(userId)
+            userRef.child("foto").setValue(imageUrl)
+        }
+    }
+
 
 }
