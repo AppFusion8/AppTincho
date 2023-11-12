@@ -65,7 +65,7 @@
             <TextView
                 android:layout_width="324dp"
                 android:layout_height="wrap_content"
-                android:text="El Tincho Parrilla Argentina Campestre"
+                android:text="El Tincho Parrilla Argentina"
                 android:textColor="@color/secondaryLightColor"
                 android:textSize="30sp"
                 android:textStyle="bold" />
@@ -74,19 +74,33 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:text="Tabio. Vereda Rio Frio Oriental \n+57 319 312 01 10"
+                android:paddingVertical="7dp"
+                android:text=" Cl. 127A #53a-45 Local 11C, Suba, Bogotá, Cundinamarca"
                 android:textColor="@color/primaryTextColor"
                 android:textSize="20sp"
-                android:paddingVertical="7dp"
                 android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/editTextPhone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:layout_marginBottom="10dp"
+                android:paddingVertical="7dp"
+                android:inputType="phone"
+                android:text="+ 57 319 312 01 10"
+                android:textColor="@color/primaryTextColor"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
             <fragment
                 android:id="@+id/map_view"
                 android:name="com.google.android.gms.maps.SupportMapFragment"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:layout_marginTop="20dp">
-
             </fragment>
+
         </LinearLayout>
 
         <com.google.android.material.bottomnavigation.BottomNavigationView

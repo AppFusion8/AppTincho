@@ -85,11 +85,13 @@ class rutaFragment : Fragment(), OnMapReadyCallback {
 
     }
     override fun onMapReady(map: GoogleMap){
-        val colombia= com.google.android.gms.maps.model.LatLng(4.991906628177844, -74.07301928836168)
+        val colombia= com.google.android.gms.maps.model.LatLng(4.7096384, -74.0627915)
         map?.let{
             this.googlemap=it
             map.addMarker(MarkerOptions()
-                .position(colombia))
+                .position(colombia)
+                .title("Centro Empresarial Colpatria"))
+
         }
         enableLocation()
     }
